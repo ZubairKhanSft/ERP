@@ -1,0 +1,362 @@
+
+<form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-subheader__main">
+                <div class="kt-subheader__breadcrumbs" >
+                    <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                        <em class="flaticon2-shelter"></em>
+                    </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a [routerLink]="['/invoice/manage']" class="kt-subheader__breadcrumbs-link">
+                        Reports </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <span>Account Transactions</span>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar" id="htmlData" #htmlData>
+                <div class="kt-subheader__wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Account Transactions
+                                </h3>
+                            </div>
+    
+                            <div class="btn-group kt-portlet__head-label">
+                                <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm dropdown-toggle" data-toggle="dropdown" 
+                                     aria-haspopup="true" aria-expanded="false">
+                                  More Actions
+                                </button> -->
+                                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+    
+                                  <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                      <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                          <em class="kt-nav__link-icon la la-print"></em>
+                                          <span class="kt-nav__link-text"> Get share link</span>
+                                      </a>
+                                  </li>
+                                    <li class="kt-nav__item">
+                                      <a href="javascript:;" class="kt-nav__link" (click)="openPDF()">
+                                          <em class="kt-nav__link-icon la la-print"></em>
+                                          <span class="kt-nav__link-text"> Preview as customer</span>
+                                      </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                        <em class="kt-nav__link-icon la la-print"></em>
+                                        <span class="kt-nav__link-text"> Print</span>
+                                    </a>
+                                </li>
+                                  </ul>
+    
+                                </div>
+                              </div>
+                        </div>
+    
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                                <div class="col-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-12">Acconts:</label>
+                                                        <div class="col-md-12">
+                                                            <select name="account"  [(ngModel)]="accountId" #account="ngModel" (change)="selectAccount($event)" class="form-control" >
+                                                                <optgroup label="">
+                                                                    <option value=0>All</option>
+                                                                </optgroup>
+                                                                <optgroup *ngFor="let acchead of allAccounts" label="{{acchead.accountMasterName}}">
+                                                                 <option *ngFor="let acc of acchead.bankAccount" value="{{acc.id}}">{{acc.accountName}}</option>
+                                                            </optgroup>
+                                                              </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-12">from:</label>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <input class="form-control" name="invoiceStartDate" id="invoiceStartDate"
+                                                                    #invoiceStartDate="ngModel" [(ngModel)]="startDate"
+                                                                    ngbDatepicker #d="ngbDatepicker" (dateSelect)="changeStartDate()"  readonly />
+                                                                <div class="input-group-append">
+                                                                    <button class="btn btn-outline-secondary calendar"
+                                                                        (click)="d.toggle()" type="button">
+                                                                        <i class="la la-calendar"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-12">to:</label>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <input class="form-control" name="invoiceDueDate" id="invoiceDueDate"
+                                                                    #invoiceDueDate="ngModel" (dateSelect)="changeEnddate()"
+                                                                    [(ngModel)]="endDate" ngbDatepicker
+                                                                    #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                                                                <div class="input-group-append">
+                                                                    <button class="btn btn-outline-secondary calendar"
+                                                                        (click)="d1.toggle()" type="button">
+                                                                        <i class="la la-calendar"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="form-group row">
+                                                    <label class="col-md-12">Report Type:</label>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="statementType" [(ngModel)]="selectedstType" 
+                                                 name="statementType" #statementType="ngModel">
+                                                     <!-- <option [ngValue]="statementType" *ngFor="let statementType of statementTypes">{{statementType.name}}</option> -->
+                                                     <option value=1>Accural (Paid & Unpaid)</option>
+                                                     <option value=0>Cash Basis (Paid)</option>
+                                                   </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <div class="form-group row">
+                                                    <label class="col-md-12">Contact:</label>
+                                                    <div class="col-md-12">
+                                                        <select class="form-control" id="statementType" [(ngModel)]="contactTypenID" (change)="selectContact($event)"
+                                                 name="contanct" #contanct="ngModel">
+                                                     <!-- <option [ngValue]="statementType" *ngFor="let statementType of statementTypes">{{statementType.name}}</option> -->
+                                                     <optgroup>
+                                                        <option value=0>All</option>
+                                                     </optgroup>
+                                                    
+                                                     <optgroup  label="Customer">
+                                                        <option *ngFor="let item of customers"  value="{{item.keyInt+'/'+1}}">{{item.value}}</option>
+                                                     </optgroup>
+                                                     <optgroup label="Vendor">
+                                                        <option *ngFor="let item of vendors"  value="{{item.keyInt+'/'+2}}">{{item.value}}</option>
+                                                     </optgroup>
+                                                    
+                                                   </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group row">
+                                                    <label class="col-md-12">&nbsp;</label>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-success" (click)="showAccountTransaction()">
+                                                            <i class="la la-save"></i> Update Report</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    </div>
+                                  
+                                </div>
+    
+    
+                            </div>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                            <div class="kt-portlet__body">
+                                <div class="container">
+                                    <div class="row justify-content-center">  
+                                      <div class="row-12"></div> <br>
+                                          <div class="col-12"> 
+                                                <table class="table" id="my-table">
+                                                    <thead>
+                                                            <th>DATE</th>
+                                                            <th>DESCRIPTION</th>
+                                                            <th>Debit</th>
+                                                            <th>Credit</th>
+                                                            <th class="c">Balance</th>
+                                                            <!-- <th colspan="2" style="text-align:right"  style="font-size:15px">{{fromDate | date}} to {{toDate | date}}</th>                                                    </tr> -->
+                                                    </thead>
+                                                    <tbody *ngFor="let head of accountTransactionData.bankList">
+                                                           <tr class="accHeading">
+                                                               <td colspan="10" >{{head.accountName}}</td>
+                                                           </tr>
+                                                           <tr class="accSubHeading">
+                                                               <td colspan="4">Starting Balance</td>
+                                                               <td class="pull-right">{{head.startingBalance}}</td>
+                                                            </tr>
+                                                            <tr *ngFor="let item of head.transactions">
+                                                                <td >{{item.transactionDate | date}}</td>
+                                                                <td >{{getTransactionDesc(item.transactionType)}}</td>
+                                                                <td >{{item.debitAmount}}</td>
+                                                                <td >{{item.creditAmount}}</td>
+                                                                <td class="pull-right">{{item.balance}}</td>
+                                                             </tr>
+                                                            <tr class="accSubHeading">
+                                                                <td colspan="2">Totals and Ending Balance</td>
+                                                                <td>{{head.totalAndEndingBalanceDebitAmount}}</td>
+                                                                <td>{{head.totalAndEndingBalanceCreditAmount}}</td>
+                                                                <td class="pull-right">{{head.totalAndEndingBalance}}</td>
+                                                            </tr>
+                                                            <tr colspan="10"  class="accHeading">
+                                                                <td>Balance Change<br/>
+                                                                   <span style="font-size:0.7em">Difference between starting and ending balances</span>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td colspan="5" class="pull-right">{{head.totalAndEndingBalance}}</td>
+                                                            </tr>
+                                                            <br/><br/>
+                                                    </tbody>
+                                                   
+                                                 </table>
+                                           </div>
+                                     </div>
+                                    </div>
+    
+    
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- report sample  -->
+    <!-- <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid"> -->
+		<!--begin::Portlet-->
+<!-- <div class="kt-portlet">
+    <div class="kt-invoice-2">
+        <div class="kt-invoice__head">
+            <div class="kt-invoice__container">
+                <div class="kt-invoice__brand">
+                    <h1 class="kt-invoice__title">INVOICE</h1>
+
+                    <div href="#" class="kt-invoice__logo">
+                        <a href="#"><img src="../../../../../..//keen/themes/keen/theme/demo1/dist/assets/media/misc/invoice2-logo.png"></a>
+
+                        <span class="kt-invoice__desc">
+									<span>Cecilia Chapman, 711-2880 Nulla St., Mankato</span>
+                        <span>Mississippi 96522</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="kt-invoice__items">
+                    <div class="kt-invoice__item">
+                        <span class="kt-invoice__subtitle">INVOICE TO:</span>
+                        <span class="kt-invoice__text">Iris Watson, P.O. Box 283 8562 Fusce RD.<br>Fredrick Nebraska 20620</span>
+                    </div>
+
+                    <div class="kt-invoice__item">
+                        <span class="kt-invoice__subtitle">DATE:</span>
+                        <span class="kt-invoice__text">Dec 12, 2018</span>
+                        <span class="kt-invoice__subtitle">INVOICE NO</span>
+                        <span class="kt-invoice__text">GS000014</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-invoice__body">
+            <div class="kt-invoice__container">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>DESCRIPTION</td>
+                                <td>HOURS</td>
+                                <td>RATE</td>
+                                <td>AMOUNT</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Creative Design</td>
+                                <td>80</td>
+                                <td>$40.00</td>
+                                <td>$3200.00</td>
+                            </tr>
+                            <tr>
+                                <td>Front-End Development</td>
+                                <td>120</td>
+                                <td>$40.00</td>
+                                <td>$4800.00</td>
+                            </tr>
+                            <tr>
+                                <td>Back-end Development</td>
+                                <td>210</td>
+                                <td>$60.00</td>
+                                <td>$12600.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-invoice__footer">
+            <div class="kt-invoice__container">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>BANK</th>
+                                <th>ACC.NO.</th>
+                                <th>DUE DATE</th>
+                                <th>TOTAL AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BARCLAYS UK</td>
+                                <td>12345678909</td>
+                                <td>Jan 07, 2018</td>
+                                <td class="kt-font-danger kt-font-xl kt-font-boldest">20,600.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-invoice__actions">
+            <div class="kt-invoice__container">
+                <button type="button" class="btn btn-label-brand btn-bold" onclick="window.print();">Download Invoice</button>
+                <button type="button" class="btn btn-brand btn-bold" onclick="window.print();">Print Invoice</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+    <!-- </div> -->
+    </form>
+  

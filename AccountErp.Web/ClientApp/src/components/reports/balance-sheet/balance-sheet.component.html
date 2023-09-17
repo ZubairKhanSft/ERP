@@ -1,0 +1,243 @@
+<form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+  <div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__breadcrumbs">
+          <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+            <em class="flaticon2-shelter"></em>
+          </a>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a [routerLink]="['/invoice/manage']" class="kt-subheader__breadcrumbs-link">
+            Reports </a>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <span>Balance Sheet</span>
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar" id="htmlData" #htmlData>
+        <div class="kt-subheader__wrapper">
+        </div>
+      </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+      <div class="row">
+        <div class="col-md-12" *blockUI="'container-blockui'">
+          <div class="kt-portlet">
+            <div class="kt-portlet__head">
+              <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                  Balance Sheet
+                </h3>
+              </div>
+              <div class="btn-group kt-portlet__head-label">
+                <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm dropdown-toggle" data-toggle="dropdown" 
+                                 aria-haspopup="true" aria-expanded="false">
+                              More Actions
+                            </button> -->
+                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                  Action
+                </button>
+                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+
+                  <ul class="kt-nav">
+                    <li class="kt-nav__item">
+                      <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                        <em class="kt-nav__link-icon la la-print"></em>
+                        <span class="kt-nav__link-text"> Get share link</span>
+                      </a>
+                    </li>
+                    <li class="kt-nav__item">
+                      <a href="javascript:;" class="kt-nav__link" (click)="openPDF()">
+                        <em class="kt-nav__link-icon la la-print"></em>
+                        <span class="kt-nav__link-text"> Preview as customer</span>
+                      </a>
+                    </li>
+                    <li class="kt-nav__item">
+                      <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                        <em class="kt-nav__link-icon la la-print"></em>
+                        <span class="kt-nav__link-text"> Print</span>
+                      </a>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="kt-portlet__body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+
+                    <div class="form-group col-md-4 row">
+                      <label class="col-md-9">As of:</label>
+                      <div class="col-md-12">
+                        <div class="input-group">
+                          <input class="form-control" name="agedPayableasOfDate" id="agedPayableasOfDate"
+                            #agedPayableasOfDate="ngModel" (dateSelect)="changeAsOfdate()" [(ngModel)]="asOfDate"
+                            ngbDatepicker #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+                              <i class="la la-calendar"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-4 row">
+                      <label class="col-md-9">Report Type :</label>
+                      <div class="col-md-12">
+                        <!-- <ngx-select-dropdown  name="reportType" #reportType="ngModel" (change)="getReportType()" 
+                                                  [multiple]="false" [(ngModel)]="selectedType"
+                                                   [config]="config" [options]="Type"></ngx-select-dropdown> -->
+                        <select class="form-control" id="reportType" [(ngModel)]="selectedstType" name="reportType"
+                          #reportType="ngModel">
+                          <!-- <option [ngValue]="statementType" *ngFor="let statementType of statementTypes">{{statementType.name}}</option> -->
+                          <option value="0">Accrual (Paid & Unpaid)</option>
+                          <option value="1">Cash Basis (Paid)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-4 row">
+                      <label class="col-md-10"></label>
+                      <div class="col-md-12">
+                        <div class="input-group">
+                          <button class="btn btn-success" (click)="showBalanceSheet()" type="submit">Update
+                            Report</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <!-- <div class="col-md-12" *blockUI="'container-blockui'">
+                                    <table datatable [dtOptions]="dtOptions" data-page="2" class="table table-striped">
+                                    </table>
+                                </div> -->
+              </div>
+
+
+            </div>
+
+            <!-- <div class="kt-portlet__foot">
+                            <div class="kt-form__actions text-right">
+                                <button type="submit" class="btn btn-success" (click)="showProfitandLoss()">
+                                    <i class="la la-save"></i> Generate Report</button>
+                            </div>
+                        </div> -->
+
+          </div>
+          <div class="row">
+            <!-- <div class="card" style="width: 18rem;">   </div> -->
+
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Income</h5>
+                <h5 class="card-text">{{totalIncome | currency}}</h5>
+              </div>
+            </div>
+         
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Operating Expenses</h5>
+                <h5 class="card-text">{{allTotalOperatingExpenses| currency}} - </h5>
+              </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Net Profit</h5>
+                <h5 class="card-text">= {{allNetProfit | currency}}</h5>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+            <!-- <div class="card" style="width: 8rem;">  </div> -->
+          </div>
+
+
+          <div class="row"></div><br>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4"></div>
+              <div class="btn-group btn-group-toggle col-sm-4" data-toggle="buttons">
+
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked (click)="toggleSummary()">
+                  Summary
+                </label>
+
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option2" autocomplete="off" (click)="toggleDetail()"> Details
+                </label>
+
+              </div>
+            </div>
+          </div>
+
+          <br><br><br>
+
+
+          <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+              <div class="col-md-12" *blockUI="'container-blockui'">
+                <div class="kt-portlet">
+                  <div class="kt-portlet__body">
+                    <div class="container">
+                      <div class="row justify-content-center">
+                        <div class="row-12"></div> <br>
+                        <div class="col-12">
+                          <table class="table" id="my-table">
+                            <thead>
+                              <th>ACCOUNTS</th>
+                              <th colspan="2" style="text-align:right" class="c" style="font-size:15px">
+                                {{model.asOfDate | date}} dATE</th>
+                              <!-- <th style="width:15%">{{fromDate | date}} to {{toDate | date}}</th> -->
+                            </thead>
+
+
+                            <!-- SHOW SUMMARY STARTS -->
+
+                            <tbody *ngFor="let head of balanceSheetData">
+                              <tr>
+                                <td colspan="2" style="background-color:rgb(187, 220, 241)" class="Bold">{{head.accountMasterName}}
+                                </td>
+                              </tr>
+
+                              <tr *ngFor="let item of head.bankAccount">
+                                <td *ngIf="showSummary && item.id!=0">{{item.accountName}}</td>
+                                <td scope="row" *ngIf="showDetail && item.id!=0"><a
+                                    [routerLink]="['/reports/account-transactions/']"
+                                    class="external-link">{{item.accountName}}</a></td>
+                                <td scope="row" class="c" *ngIf="item.id!=0"> {{item.amount | currency}} </td>
+
+                                <td *ngIf="item.id==0" class="Bold">{{item.accountName}}</td>
+                                <td scope="row" class="c Bold" *ngIf="item.id==0"> {{item.amount | currency}} </td>
+                              </tr>
+
+
+                            </tbody>
+
+
+
+                            <!-- SHOW SUMMARY ENDS -->
+
+
+                            <!-- SHOW DETAIL ENDS -->
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

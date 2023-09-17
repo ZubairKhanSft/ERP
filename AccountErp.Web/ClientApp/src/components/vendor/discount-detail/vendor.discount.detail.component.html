@@ -1,0 +1,33 @@
+<form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+    <div class="kt-wizard-v2__content">
+        <div class="kt-heading kt-heading--md">Discount Detail</div>
+        <div class="kt-form__section kt-form__section--first">
+            <div class="kt-wizard-v2__form">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && discount.invalid}">
+                            <label class="col-md-3">Discount:</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" name="discount" class="form-control" maxlength="6"
+                                        autocomplete="off" [(ngModel)]="model.discount" #discount="ngModel"
+                                        appDecimalNumbersOnly />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            %
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="validation-error-message" *ngIf="f.submitted && discount.invalid">
+                                    Discount is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-vendor-form-wizard-navigator (moveBackward)="prev()" [wizardStep]="wizardStep">
+    </app-vendor-form-wizard-navigator>
+</form>

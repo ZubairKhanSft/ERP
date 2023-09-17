@@ -1,0 +1,50 @@
+<form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+    <div class="kt-wizard-v2__content">
+        <div class="kt-heading kt-heading--md">Invoice Details</div>
+        <div class="kt-form__section kt-form__section--first">
+            <div class="kt-wizard-v2__form">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group row">
+                            <label class="col-md-6">Customer:</label>
+                            <div class="col-md-6">
+                                <p class="kt-portlet__data">{{model.customer.firstName}} {{model.customer.middleName}} {{model.customer.lastName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-md-6">Invoice amount:</label>
+                            <div class="col-md-6">
+                                <p class="kt-portlet__data">{{model.totalAmount}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-md-6">Created on:</label>
+                            <div class="col-md-6">
+                                <p class="kt-portlet__data">{{model.createdOn | date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-md-6">Payment terms:</label>
+                            <div class="col-md-6">
+                                <p class="kt-portlet__data">On Receipt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-customer-form-wizard-navigator (moveBackward)="prev()" [wizardStep]="wizardStep">
+    </app-customer-form-wizard-navigator>
+</form>

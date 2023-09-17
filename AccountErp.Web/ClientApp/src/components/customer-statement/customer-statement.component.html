@@ -1,0 +1,550 @@
+<form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+      <div class="kt-subheader kt-grid__item" id="kt_subheader">
+          <div class="kt-subheader__main">
+              <h3 class="kt-subheader__title">
+                  Customer Staement </h3>
+              <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+              <div class="kt-subheader__breadcrumbs">
+                  <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                      <i class="flaticon2-shelter"></i>
+                  </a>
+                  <span class="kt-subheader__breadcrumbs-separator"></span>
+                  <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Manage</span>
+              </div>
+          </div>
+          <div class="kt-subheader__toolbar">
+              <div class="kt-subheader__wrapper">
+              </div>
+          </div>
+      </div>
+      <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+          <div class="row">
+              <!-- <form class="kt-form form-horizontal" name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm"
+              novalidate> -->
+              <div class="col-md-12">
+                  <div class="kt-portlet">
+                    
+                      <div class="kt-portlet__head">
+                          <div class="col-md-12 text-right m-t-10">
+                              <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm"[disabled]="!f.valid"
+                              (click)="showcustomerStatement();isShow=!isShow">
+                              <i class="la la-search"></i> {{text1}}
+                          </button> -->
+                          <button type="submit" class="btn btn-success btn-elevate btn-icon-sm" [disabled]="!f.valid" 
+                          (click)="toggleDisplay();showcustomerStatement()">
+                          <i class="la la-search"></i> {{text1}}
+                          </button>
+                          <!-- (click)="changeText()"*ngIf = "!isShow" -->
+                          <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm"
+                          *ngIf = "!isShow" (click)="exit()">Refresh
+                      </button> -->
+                  </div>
+                      </div>
+                      <div class="kt-portlet__body">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="row">
+                                      <div class="form-group col-md-3 row" >
+                                      <label class="col-md-3">Customer:*</label>
+                                      <div class="col-md-11">
+                                          <ngx-select-dropdown  name="customerId" #customerId="ngModel" (change)="getCustomerDetail()"  id="customerId"
+                                          [multiple]="false" [(ngModel)]="selectedCustomer" [config]="config" [options]="customers"></ngx-select-dropdown>
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-md-3 row">
+                                     <label class="col-md-3">Type:</label>
+                                          <div class="col-md-12" >
+                                              <!-- <ngx-select-dropdown  name="statementType" #statementType="ngModel" (change)="getCustomerDetail()" 
+                                              [multiple]="false" [(ngModel)]="selectedStatement" [config]="config" [options]="statementTypes"></ngx-select-dropdown> -->
+                                              <select class="form-control" id="statementType" [(ngModel)]="selectedstType" name="statementType" #statementType="ngModel">
+                                                  <!-- <option [ngValue]="statementType" *ngFor="let statementType of statementTypes">{{statementType.name}}</option> -->
+                                                  <option value="outstanding">Outstanding Invoices</option>
+                                                  <option value="accActivity">Account Activity</option>
+                                                </select>
+                                          </div>
+                                   </div>
+                                   <div class="form-group col-md-3 row" *ngIf="selectedstType == 'accActivity'">
+                                      <label class="col-md-3">from:</label>
+                                      <div class="col-md-12">
+                                          <div class="input-group">
+                                              <input class="form-control" name="invoiceStartDate" id="invoiceStartDate"
+                                                  #invoiceStartDate="ngModel" [(ngModel)]="startDate"
+                                                  ngbDatepicker #d="ngbDatepicker" (dateSelect)="changeStartDate()"  readonly />
+                                              <div class="input-group-append">
+                                                  <button class="btn btn-outline-secondary calendar"
+                                                      (click)="d.toggle()" type="button">
+                                                      <i class="la la-calendar"></i>
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+  
+                                  <div class="form-group col-md-3 row" *ngIf="selectedstType == 'accActivity'">
+                                      <label class="col-md-3">to:</label>
+                                      <div class="col-md-12">
+                                          <div class="input-group">
+                                              <input class="form-control" name="invoiceDueDate" id="invoiceDueDate"
+                                                  #invoiceDueDate="ngModel" (dateSelect)="changeEnddate()"
+                                                  [(ngModel)]="endDate" ngbDatepicker
+                                                  #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                                              <div class="input-group-append">
+                                                  <button class="btn btn-outline-secondary calendar"
+                                                      (click)="d1.toggle()" type="button">
+                                                      <i class="la la-calendar"></i>
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+  
+                                  </div>
+                              </div>
+                              <div class="col-md-12" *blockUI="'container-blockui'">
+                                  <table datatable [dtOptions]="dtOptions" data-page="2" class="table table-striped">
+                                  </table>
+                              </div>
+                          </div>
+               
+                      </div>
+                  </div>
+                  <!-- ________________________outstanding invoices *ngIf = "!isShow"__________________-->
+                  <div  *ngIf="!isShow">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="row">
+                                  <div class="col-md-5"></div>
+                                  <div class="btn-group">
+                                      <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm dropdown-toggle" data-toggle="dropdown" 
+                                           aria-haspopup="true" aria-expanded="false">
+                                        More Actions
+                                      </button> -->
+                                      <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                      data-toggle="dropdown">
+                                      Action
+                                  </button>
+                                      <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+  
+                                        <ul class="kt-nav">
+                                          <li class="kt-nav__item">
+                                            <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                                <em class="kt-nav__link-icon la la-print"></em>
+                                                <span class="kt-nav__link-text"> Get share link</span>
+                                            </a>
+                                        </li>
+                                          <li class="kt-nav__item">
+                                            <a href="javascript:;" class="kt-nav__link" (click)="openPDF()">
+                                                <em class="kt-nav__link-icon la la-print"></em>
+                                                <span class="kt-nav__link-text"> Preview as customer</span>
+                                            </a>
+                                        </li>
+                                        <li class="kt-nav__item">
+                                          <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                              <em class="kt-nav__link-icon la la-print"></em>
+                                              <span class="kt-nav__link-text"> Print</span>
+                                          </a>
+                                      </li>
+                                        </ul>
+  
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <button type="button" class="btn btn-success btn-elevate btn-icon-sm"
+                                      >Send Statement
+                                  </button>
+  
+                                  </div>
+                              </div>
+                          </div>
+  
+                          
+                      </div>
+                      <br>
+                      <!-- Outstanding tab starts -->
+                      
+                      <div class="kt-portlet">
+                        <div id="htmlData" #htmlData> 
+                        <div class="container" >
+                          <div class="row justify-content-end ">
+                           <div class="col-4" ><br>
+                               <div class="row">
+                                   <h2 class="col-md-10 text-right">Statement of Account</h2>
+                               </div>
+                               <div class="row">
+                                   <h4 class="col-md-10 text-right" *ngIf="selectedstType == 'outstanding'">Outstanding Invoices</h4>
+                                   <h4 class="col-md-10 text-right" *ngIf="selectedstType == 'accActivity'">Account Activity</h4>
+                               </div>
+                           </div>
+                          </div>
+                       </div>
+  
+                       <br><br> <br> <br> <br> <div class="col-8"></div>
+                         <div class="row justify-content-end " >
+                         <div class="col-4">
+                             <div class="row">
+                             </div>
+                         </div>
+                         </div>
+                       <div>
+                    
+                          <div class="container"  >
+                            <div  class="row justify-content-between">        
+                                  <div class="col-4" >
+                                    <div class=" row">
+                                         <div class="col-md-4">Bill to :</div>
+                                    </div><br>
+                                     <div class=" row">
+                                         <label class="col-md-6">{{customer.firstName+" "+customer.middleName+" "+customer.lastName}}</label>
+                                     </div>
+                                     <div class=" row">
+                                         <div class="col-md-4">{{customer.phone}}</div>
+                                     </div>
+                                     <div class=" row">
+                                      <div class="col-md-4">{{customer.email}}</div>
+                                  </div>
+                                     <div class=" row">
+                                         <div class="col-md-4">{{customer.address.streetNumber+" "+customer.address.streetName}}</div>
+                                     </div>
+                                     <div class=" row">
+                                         <div class="col-md-4">{{customer.address.city+" "+customer.address.state+" "+customer.address.postalCode}}
+                                         </div>
+                                     </div>
+                                     <div class=" row">
+                                         <div class="col-md-4">{{customer.address.countryId}}
+                                         </div>
+                                      </div>
+                                 </div>
+                                 <div class="col-2"></div>
+                                      <div class="col-5" >
+                               
+                                        <div class="section-summary-header" *ngIf="selectedstType == 'outstanding'">
+                                          <div class=" row">
+                                              <h4 class="col-md-10 text-right">  Indian rupee (INR) :</h4>
+                                          </div><br>
+                                             <div class=" row">
+                                                  <div class="col-md-4">As of :</div>
+                                                  <div class="col-md-4 ml-auto">{{today | date}}</div>
+                                              </div>
+                                              <hr>
+                                              <div class=" row">
+                                                  <div class="col-md-4">Overdue</div>
+                                                  <div class="col-md-4 ml-auto">{{overDueAmount | currency}}</div>
+                                              </div>
+                                              <div class=" row">
+                                                  <div class="col-md-4">Not yet due</div>
+                                                  <div class="col-md-4 ml-auto">{{totalDueAmount | currency}}</div>
+                                              </div><br>
+                                              <div class=" row mark">
+                                                  <label class="col-md-6">Outstanding balance (INR)	:</label>
+                                                  <div class="col-md-4 ml-auto">{{outStandingBalance | currency}}</div>
+                                              </div>
+                                        </div>
+  
+                                        <div class="section-summary-header" *ngIf="selectedstType == 'accActivity'">
+                                          <div class=" row">
+                                              <div class="col-md-4">From :</div>
+                                              <div class="col-md-4 ml-auto">{{fromDate | date}}</div>
+                                          </div>
+                                             <div class=" row">
+                                                  <div class="col-md-4">To :</div>
+                                                  <div class="col-md-4 ml-auto">{{toDate | date}}</div>
+                                              </div>
+                                              <hr>
+                                              <div class=" row">
+                                                  <div class="col-md-7">Opening balance on {{fromDate | date}} (INR)</div>
+                                                  <div class="col-md-4 ml-auto">{{statementData.openingBalance | currency}}</div>
+                                              </div>
+                                              <div class=" row">
+                                                  <div class="col-md-4">Invoiced</div>
+                                                  <div class="col-md-4 ml-auto">{{tempBalance | currency}}</div>
+                                              </div>
+                                              <div class=" row ">
+                                                  <div class="col-md-6">Paid </div>
+                                                  <div class="col-md-4 ml-auto">0.00</div>
+                                              </div>
+                                              <div class=" row ">
+                                                  <div class="col-md-6">Refunded </div>
+                                                  <div class="col-md-4 ml-auto">0.00</div>
+                                              </div><br>
+                                              <div class=" row mark">
+                                                  <label class="col-md-8">Closing Balance on {{toDate | date}} (INR) </label>
+                                                  <div class="col-md-4 ml-auto">{{getClosingBalanceAmount() | currency}}</div>
+                                              </div>
+                                        </div>
+                                      </div>
+                              </div>
+                          </div>
+  
+                        </div>
+                        </div>
+  
+                        
+                      <div *ngIf="selectedstType == 'outstanding'">
+                        <div class="container" >
+                          <div class="row justify-content-center">
+                            <div class="col-12"></div> 
+                              <div class="col-12">
+                              </div>
+                          </div>
+                        </div>
+                        <br> <br> <br> <br> <br> <br> 
+                        <div class="container">
+                          <div class="row justify-content-center">  
+                            <div class="row-12"></div> <br>
+                                <div class="col-12"> 
+                                      <table class="table table-striped" id="my-table">
+                                          <thead>
+                                              <tr >
+                                                  <th style="width:15%">S.NO.</th>
+                                                  <th style="width:15%">Invoice #  </th>
+                                                  <th scope="col" style="width:20%"> Invoice Date    </th>
+                                                  <th scope="col" style="width:20%">  Due Date       </th>
+                                                  <th scope="col" style="width: 15%;">Total</th>
+                                                  <th scope="col "style="width:10%">  Paid         </th>
+                                                  <th scope="col" style="width: 10%;"> Due</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr *ngFor="let item of statementData.invoiceList; index as $index;">
+                                                  <td scope="row">
+                                                      {{($index + 1)}}
+                                                  </td>
+                                                  <td>
+                                                      {{item.invoiceNumber}}
+  
+                                                  </td>
+                                                  <td>
+                                                      {{item.invoiceDate | date}}<br/>
+                                                      <div *ngIf="item.status==3" class="lblOverdue">Overdue</div>
+                                                  </td>
+                                                  <td>
+                                                     {{item.dueDate | date}}
+  
+                                                  </td>
+                                                  <td>
+                                                    {{item.totalAmount | currency}}
+                                                  </td>
+                                                  <td>
+                                                    {{getPaidAmount(item) | currency}}
+                                                  </td>
+                                                 
+                                                  <td>
+                                                    {{getBalanceAmount(item) | currency}}
+  
+                                                  </td>
+                                              </tr>
+                                          </tbody>
+                                       </table>
+                                 </div>
+                           </div>
+                          </div>
+                          <br><div class="col-8"></div>
+  
+                          <div class="container" id="htmlData" #htmlData>
+                            <div class="row justify-content-end ">
+                              <div class="col-6"></div>
+                            <div class="col-4">
+                                <div class="row">
+                                    <label class="col-md-8 kt-portlet__label">Outstanding Balance (INR) &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{outStandingBalance | currency}}</label>
+                                </div><br><br>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                      <!-- </div> -->
+                      <!-- outstanding tab ends -->
+  
+  
+                      <!-- Accounting tab starts -->
+                      <div >
+                            <div *ngIf="selectedstType == 'accActivity'" >
+                              <div class="container" >
+                                <div class="row justify-content-center">
+                                  <div class="col-12"></div> 
+                                    <div class="col-12">
+                                    </div>
+                                </div>
+                              </div>
+                              <br> <br> <br> <br> <br> <br> 
+                              <div class="container" >
+                                <div class="row justify-content-center">
+                                  <div class="row-12"></div> <br>
+                                    <div class="col-12">
+                                                            
+                                      <table class="table table-striped" id="my-table">
+                                        <thead>
+                                            <tr >
+                                                <th >S.NO.</th>
+                                                <th  scope="col">Date</th>
+                                                <th scope="col"> Item   </th>
+                                                <th scope="col">  Amount  </th>
+                                                <th scope="col" style="width: 15%;">Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td></td>
+                                                <td>{{fromDate | date}}</td>
+                                                <td> Opening Balance</td>
+                                                <td>{{statementData.openingBalance | currency}}</td>
+                                                <td>{{statementData.openingBalance | currency}}</td>
+                                            </tr>
+                                            <tr *ngFor="let item of statementData.invoiceList; index as $index;">
+                                                <td scope="row">
+                                                    {{($index + 1)}}
+                                                </td>
+  
+                                                <td>
+                                                    {{item.invoiceDate | date}}
+  
+                                                </td>
+                                                <td>
+                                                    {{item.invoiceNumber}}    <br/>
+                                                    <div *ngIf="item.status==3">Due {{item.dueDate | date}}</div>
+                                                </td>
+                                                <td>
+                                                  {{item.paidAmount | currency}}
+                                               </td>
+                                              
+                                               <td>
+                                                 {{item.balanceAccAmount | currency}}
+  
+                                               </td>
+                                            </tr>
+  
+                                            <tr >
+                                                <td></td>
+                                                <td>{{toDate | date}}</td>
+                                                <td> Closing Balance</td>
+                                                <td>{{getClosingBalanceAmount() | currency}}</td>
+                                                <td>{{getClosingBalanceAmount() | currency}}</td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                              </div>
+                             
+                                <br><div class="col-8"></div>
+  
+                                <div class="container">
+                                  <div class="row justify-content-end " id="htmlData" #htmlData>
+                                  <div class="col-5">
+                                    <div class="col-7"></div>
+                                      <div class="row">
+                                          <!-- <label class="col-md-8 kt-portlet__label">Closing balance on {{toDate | date}} (INR): </label>
+                                          <label class="col-md-8 kt-portlet__label">{{getClosingBalanceAmount()}}</label> -->
+                                          <label class="col-md-8 kt-portlet__label">Closing balance on {{toDate | date}} (INR): </label>
+                                          <p class="kt-portlet__data col-sm-3">{{getClosingBalanceAmount() | currency}}</p>
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
+                    </div>
+  
+                      <!-- accounting tab ends -->
+                  </div>
+              </div>
+  
+          </div>
+      </div>
+  </div>
+  </form>
+  <!-- <ng-template #itemesModal let-modal *ngIf="!showMyContainer"> -->
+      <!-- <div class="kt-portlet__body">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && accountNumber.invalid}">
+                <label class="col-md-3">From</label>
+                <div class="col-md-9">
+                  <input type="text" name="accountNumber" class="form-control" maxlength="50" autocomplete="off"
+                    [(ngModel)]="model.accountNumber" #accountNumber="ngModel" required appNumbersOnly />
+                  <div class="validation-error-message" *ngIf="f.submitted && accountNumber.invalid">
+                    Account number is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && bankName.invalid}">
+                <label class="col-md-3">To</label>
+                <div class="col-md-9">
+                  <input type="text" name="bankName" class="form-control" maxlength="250" autocomplete="off"
+                    [(ngModel)]="model.bankName" #bankName="ngModel" appAlphaNumericsLevelThree required />
+                  <div class="validation-error-message" *ngIf="f.submitted && bankName.invalid">
+                    Bank name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group row"
+                [ngClass]="{ 'validation-error' : f.submitted && accountHolderName.invalid}">
+                <label class="col-md-3">Subject</label>
+                <div class="col-md-9">
+                  <input type="text" name="accountHolderName" class="form-control" maxlength="250"
+                    autocomplete="off" [(ngModel)]="model.accountHolderName" #accountHolderName="ngModel"
+                    appAlphaNumericsLevelTwo required />
+                  <div class="validation-error-message" *ngIf="f.submitted && accountHolderName.invalid">
+                    Account holder name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && branchName.invalid}">
+                <label class="col-md-3">Message</label>
+                <div class="col-md-9">
+               <textarea> </textarea>
+                  <div class="validation-error-message" *ngIf="f.submitted && branchName.invalid">
+                    Branch name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && ifsc.invalid}">
+                <label class="col-md-3">Chechbox</label>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Send a copy to myself at your gmail</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-success" (click)="closeItemesModal()">
+              <i class="la la-check"></i> Cancel
+            </button>
+            <button class="wv-button--primary">Send</button>
+          </div>
+        </div> -->
+  
+  
+        <!-- <div class="wv-button-wrapper" role="group"><button class="wv-button--secondary">Cancel</button><button class="wv-button--primary">Send</button></div> -->
+      <!-- <div class="modal-header">
+        <h5 class="modal-title">From</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeItemesModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-item-selector [selectedItems]='selectedItems'></app-item-selector>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-12 text-right">
+          <button type="button" class="btn btn-success" (click)="closeItemesModal()">
+            <i class="la la-check"></i> Done
+          </button>
+        </div>
+      </div> -->
+    <!-- </ng-template> -->

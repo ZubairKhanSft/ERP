@@ -1,0 +1,24 @@
+<form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+    <div class="kt-wizard-v2__content">
+        <div class="kt-heading kt-heading--md">Send</div>
+         <div class="kt-section">
+        <div class="kt-section__content   kt-section__content--border">
+            <div class="kt-grid-nav-v2">
+                <a href="#" class="kt-grid-nav-v2__item">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="flaticon2-paper-plane"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Automatic sending</div>
+                </a>
+                <a href="#" class="kt-grid-nav-v2__item">
+                    <div class="kt-grid-nav-v2__item-icon"><i class="flaticon-envelope"></i></div>
+                    <div class="kt-grid-nav-v2__item-title">Manual sending</div>
+                </a>
+                          
+            </div>
+        </div>
+    </div>
+    </div>
+
+   
+    <app-customer-form-wizard-navigator (moveBackward)="prev()" [wizardStep]="wizardStep">
+    </app-customer-form-wizard-navigator>
+</form>

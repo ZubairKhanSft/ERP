@@ -1,0 +1,30 @@
+<form name="form" (ngSubmit)="f.form.valid && next()" #f="ngForm" novalidate>
+    <div class="kt-wizard-v2__content">
+        <div class="kt-heading kt-heading--md">Get paid</div>
+        <div class="kt-form__section kt-form__section--first">
+            <div class="kt-wizard-v2__form">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row" [ngClass]="{ 'validation-error' : f.submitted && discount.invalid}">
+                            <label class="col-md-3">Payment mode:</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <select class="form-control" class="form-control">
+                                        <option value="0">Cash</option>
+                                        <option value="1">Credit card</option>
+                                        <option value="2">Cheque</option>
+                                    </select>
+                                </div>
+                                <div class="validation-error-message" *ngIf="f.submitted && discount.invalid">
+                                    Discount is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-customer-form-wizard-navigator (moveBackward)="prev()" [wizardStep]="wizardStep">
+    </app-customer-form-wizard-navigator>
+</form>

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20230808070712_fileInProduct123456.cs" />
+    <Compile Remove="Migrations\20230808070712_fileInProduct123456.Designer.cs" />
+    <Compile Remove="Migrations\20230911062500_fkCurrencycrInBills.cs" />
+    <Compile Remove="Migrations\20230911062500_fkCurrencycrInBills.Designer.cs" />
+    <Compile Remove="Migrations\20230911062932_fkCurrencycrInBills1.cs" />
+    <Compile Remove="Migrations\20230911062932_fkCurrencycrInBills1.Designer.cs" />
+    <Compile Remove="Migrations\20230912085825_addconversionrateandtotalamontconversioninInvoice.cs" />
+    <Compile Remove="Migrations\20230912085825_addconversionrateandtotalamontconversioninInvoice.Designer.cs" />
+    <Compile Remove="Migrations\20230912090543_conversionrateininvoice.cs" />
+    <Compile Remove="Migrations\20230912090543_conversionrateininvoice.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccountErp.Infrastructure\AccountErp.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

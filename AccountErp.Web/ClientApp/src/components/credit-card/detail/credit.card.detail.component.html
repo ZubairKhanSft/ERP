@@ -1,0 +1,98 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <div class="kt-subheader__breadcrumbs">
+                <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                    <em class="flaticon2-shelter"></em>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a [routerLink]="['/credit-card/manage']" class="kt-subheader__breadcrumbs-link">
+                    Credit Cards </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <span>Detail</span>
+            </div>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+            <div class="col-md-7" *blockUI="'container-blockui'">
+                <div class="kt-portlet">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                Credit Card Detail
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                        <a [routerLink]="['/credit-card/edit', model.id]" class="kt-nav__link">
+                                            <em class="kt-nav__link-icon la la-edit"></em>
+                                            <span class="kt-nav__link-text"> Edit</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="javascript:;" class="kt-nav__link" (click)="delete()">
+                                            <em class="kt-nav__link-icon la la-trash"></em>
+                                            <span class="kt-nav__link-text">
+                                                Delete
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-form form-horizontal">
+                        <div class="kt-portlet__body" *ngIf="isModelLoaded">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Card#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.creditCardNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Bank Name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.bankName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group row">
+                                        <label class="col-md-3  kt-portlet__label">Card Holder Name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.cardHolderName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions text-right" *ngIf="isModelLoaded">
+                                <a [routerLink]="['/credit-card/manage']" class="btn btn-outline-secondary m-r-5">
+                                    <i class="la la-arrow-left"></i> Back
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

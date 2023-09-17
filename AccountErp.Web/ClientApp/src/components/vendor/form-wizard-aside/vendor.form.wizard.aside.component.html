@@ -1,0 +1,102 @@
+<div class="kt-grid__item kt-wizard-v2__aside p-t-15">
+    <div class="kt-wizard-v2__nav">
+        <div class="kt-wizard-v2__nav-items">
+            <a class="kt-wizard-v2__nav-item " href="javascript:;" [ngClass]="{'active': wizardStep === 1}"
+                (click)="setWizardStep.emit(1)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon-user"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Profile
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Personal Details
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 2}"
+                (click)="setWizardStep.emit(2)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon-placeholder"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Billing Address
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Billing Address Details
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 3}"
+                (click)="setWizardStep.emit(3)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon-placeholder"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Shipping Address
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Shipping Address Details
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 4}"
+                (click)="setWizardStep.emit(4)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon-users"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Contacts
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Vendor Contacts Details
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 5}"
+                (click)="setWizardStep.emit(5)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon-piggy-bank"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Payment
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Bank Account Detail
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 6}"
+                (click)="setWizardStep.emit(6)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="flaticon2-percentage"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Discount
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Discount Detail
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

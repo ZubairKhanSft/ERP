@@ -1,0 +1,64 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                Dashboard </h3>
+            <span class="kt-subheader__separator kt-hidden"></span>
+
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        
+ <div class="row">
+        <div class="card chart-wrapper col-6">
+            <div  class="card-header"><h4>Sales Statistics</h4></div>  <hr>
+            <canvas baseChart 
+            [datasets]="barChartData" 
+            [labels]="barChartLabels" 
+            [options]="barChartOptions"
+            [colors]="barChartColors" 
+            [legend]="barChartLegend" 
+            [chartType]="barChartType" 
+            [plugins]="barChartPlugins">
+        </canvas>
+        </div>
+
+        <div class="card chart-wrapper col-6">
+            <div  class="card-header"><h4>Yearly Profit</h4></div>  <hr>
+            <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="lineChartType" 
+            [plugins]="lineChartPlugins">
+        </canvas>
+        </div>
+    </div>
+<br/>
+    <div class="row">
+        <div class="card chart-wrapper col-6">
+            <div  class="card-header"><h4>Top Five Invoices</h4></div>
+            <hr>
+            <div *blockUI="'container-blockui'">
+                <table datatable [dtOptions]="dtOptionsInvoice" data-page="2" class="table table-responsive">
+                </table>
+            </div>
+        </div>
+        <div class="card chart-wrapper col-6">
+            <div  class="card-header"><h4>Top Five Bills</h4></div>
+            <hr>
+            <div *blockUI="'container-blockui'">
+                <table datatable [dtOptions]="dtOptionsBills" data-page="2" class="table table-responsive">
+                </table>
+            </div>
+        </div>
+       
+    </div>
+    </div>
+</div>

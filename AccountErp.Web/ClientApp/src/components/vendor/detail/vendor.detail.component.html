@@ -1,0 +1,419 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <div class="kt-subheader__breadcrumbs">
+                <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                    <em class="flaticon2-shelter"></em>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a [routerLink]="['/vendor/manage']" class="kt-subheader__breadcrumbs-link">
+                    Vendors </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <span>Detail</span>
+            </div>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+            <div class="col-md-12" *blockUI="'container-blockui'">
+                <div class="kt-portlet">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                Vendor Detail
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                        <a [routerLink]="['/vendor/edit', model.id]" class="kt-nav__link">
+                                            <em class="kt-nav__link-icon la la-edit"></em>
+                                            <span class="kt-nav__link-text"> Edit</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="javascript:;" class="kt-nav__link" (click)="delete()">
+                                            <em class="kt-nav__link-icon la la-trash"></em>
+                                            <span class="kt-nav__link-text">
+                                                Delete
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-form form-horizontal">
+                        <div class="kt-portlet__body" *ngIf="isModelLoaded">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">HST#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.hstNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Vendor Name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3  kt-portlet__label">Phone:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.phone | mask: '000-000-0000'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Fax#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.fax}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Email:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.email}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Website:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.website}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Bill Address</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Street#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.streetNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Street Name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.streetName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Postal Code:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.postalCode}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">City:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.city}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">State:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.state}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Country:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billingAddress.countryName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Shipping Address</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Street#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.streetNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Street Name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.streetName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Postal Code:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.postalCode}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">City:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.city}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">State:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.state}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Country:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.shippingAddress.countryName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngFor="let item of model.contacts; index as $index">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span class="kt-font-bolder">Contacts {{($index + 1)}}</span>
+                                        <div class="kt-separator m-t-5">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">First Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.firstName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Middle Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.middleName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Last Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.lastName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Job Title:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.jobTitle}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Phone:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.phone}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Email:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.email}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Street#:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.streetName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Street Name:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.streetName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Postal Code:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.postalCode}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">City:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.city}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">State#:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.state}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 kt-portlet__label">Country:</label>
+                                            <div class="col-md-9">
+                                                <p class="kt-portlet__data">{{item.address.countryName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Payment Details</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Bank name:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.bankName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Bank Branch:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.bankBranch}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Account#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.accountNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">IFSC:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.ifsc}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ngb-tabset>
+                                        <ngb-tab title="Bills">
+                                            <ng-template ngbTabContent>
+                                                <app-bill-list [vendorId]="model.id"></app-bill-list>
+                                            </ng-template>
+                                        </ngb-tab>
+                                        <ngb-tab title="Payment">
+                                            <ng-template ngbTabContent>
+                                                <app-bill-payment-list [vendorId]="model.id"></app-bill-payment-list>
+                                            </ng-template>
+                                        </ngb-tab>
+                                    </ngb-tabset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

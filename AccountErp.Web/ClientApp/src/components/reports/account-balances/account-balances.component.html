@@ -1,0 +1,262 @@
+
+<form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-subheader__main">
+                <div class="kt-subheader__breadcrumbs"  >
+                    <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                        <em class="flaticon2-shelter"></em>
+                    </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a [routerLink]="['/invoice/manage']" class="kt-subheader__breadcrumbs-link">
+                        Reports </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <span>Account Balances</span>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar" id="htmlData" #htmlData>
+                <div class="kt-subheader__wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Account Balances
+                                </h3>
+                            </div>
+    
+                            <div class="btn-group kt-portlet__head-label">
+                                <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm dropdown-toggle" data-toggle="dropdown" 
+                                     aria-haspopup="true" aria-expanded="false">
+                                  More Actions
+                                </button> -->
+                                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+    
+                                  <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                      <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                          <em class="kt-nav__link-icon la la-print"></em>
+                                          <span class="kt-nav__link-text"> Get share link</span>
+                                      </a>
+                                  </li>
+                                    <li class="kt-nav__item">
+                                        <a href="javascript:;" class="kt-nav__link" (click)="openPDF()">
+                                            <em class="kt-nav__link-icon la la-print"></em>
+                                            <span class="kt-nav__link-text"> Preview as customer</span>
+                                        </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                        <em class="kt-nav__link-icon la la-print"></em>
+                                        <span class="kt-nav__link-text"> Print</span>
+                                    </a>
+                                </li>
+                                  </ul>
+    
+                                </div>
+                              </div>
+                        </div>
+    
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="form-group col-md-2 row" >
+                                                <!-- <label class="col-md-9">Date Range :</label>
+                                                      <div class="col-md-12" >
+                                                      <ngx-select-dropdown (change)="changeTax($event);updateTotalAmount.emit()" [multiple]="false" [(ngModel)]="selectedTax"
+                                                       [config]="config2" [options]="taxList" name="salesTaxId" #salesTaxId="ngModel"></ngx-select-dropdown>
+                                                
+                                                      </div> -->
+                                                      <label class="col-md-5"> </label>
+                                                      <label class="col-md-3"> </label>
+                                                      <label class="col-md-5"> </label>
+                                                      <div class="col-md-10">
+                                                          <label class="col-md-9">Date range :</label>
+                                                      </div>
+                                                </div>
+                                         <div class="form-group col-md-2 row">
+                                            <label class="col-md-3">from:</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="invoiceStartDate" id="invoiceStartDate"
+                                                        #invoiceStartDate="ngModel" [(ngModel)]="startDate"
+                                                        ngbDatepicker #d="ngbDatepicker" (dateSelect)="changeStartDate()"  readonly />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary calendar"
+                                                            (click)="d.toggle()" type="button">
+                                                            <i class="la la-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="form-group col-md-2 row">
+                                            <label class="col-md-3">to:</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="invoiceDueDate" id="invoiceDueDate"
+                                                        #invoiceDueDate="ngModel" (dateSelect)="changeEnddate()"
+                                                        [(ngModel)]="endDate" ngbDatepicker
+                                                        #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary calendar"
+                                                            (click)="d1.toggle()" type="button">
+                                                            <i class="la la-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group col-md-2 row">
+                                            <label class="col-md-9"> </label>
+                                            <label class="col-md-9"> </label>
+                                            <label class="col-md-9"> </label>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-success" (click)="showAccountBalance()">
+                                                    <i class="la la-save"></i> Update Report</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+    
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                            <div class="kt-portlet__body">
+                                <div class="container">
+                                    <div class="row justify-content-center">  
+                                      <div class="row-12"></div> <br>
+                                          <div class="col-12"> 
+                                            <table class="table table-striped" id="my-table">
+                                                    <thead>
+                                                        <tr >
+
+                                                            <td colspan="4">
+                                                                ACCOUNT
+                                                            </td>
+                                                            <td colspan="2" >
+                                                                STARTING BALANCE
+                                                            </td>
+                                                            <td colspan="2" >
+                                                                DEBIT
+                                                            </td>
+                                                            <td colspan="2" > 
+                                                                CREDIT
+                                                            </td>
+                                                            <td colspan="2" class="c">
+                                                                NET MOVEMENT
+                                                            </td>
+                                                            <td colspan="2" class="c">
+                                                                ENDING BALANCE
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody *ngFor="let head of statement.accountBalanceReportDtoList">
+                                                        <!-- <tr *ngFor="let item of salesTaxData.invoiceList; index as $index;"> -->
+                                                        <tr>
+                                                            <!-- <td colspan="4" class="acchead"></td> -->
+                                                            <td  colspan="14" style="background-color:rgb(187, 220, 241)" >
+                                                                {{head.accountMasterName}}
+                                                            </td >
+                                                            
+                                                        </tr>
+                                                        <tr *ngFor="let item of head.bankAccount ; index as $index"  class="accline">
+                                                            <td colspan="4" *ngIf="item.id!=0">
+                                                                <a [routerLink]="['/reports/account-transactions/',item.id]" class="external-link">{{item.accountName}}</a>
+                                                            </td>
+                                                            <td colspan="2" *ngIf="item.id!=0">
+                                                                {{item.startingBalance | currency}}
+                                                            </td>
+                                                            <td colspan="2" *ngIf="item.id!=0">
+                                                                {{item.debitAmount | currency}}
+                                                            </td>
+                                                            <td colspan="2" *ngIf="item.id!=0" > 
+                                                                {{item.creditAmount | currency}}
+                                                            </td>
+                                                            <td colspan="2" *ngIf="item.id!=0" class="c">
+                                                                {{item.netMovement | currency}}
+                                                            </td>
+                                                            <td colspan="2" *ngIf="item.id!=0" class="c">
+                                                                {{item.endingBalance | currency}}
+                                                            </td>
+
+
+                                                            <!-- total -->
+
+                                                            <td colspan="4" class="Bold" *ngIf="item.id==0">
+                                                                <a>{{item.accountName}}</a>
+                                                            </td>
+                                                            <td colspan="2" class="Bold" *ngIf="item.id==0">
+                                                                {{item.startingBalance | currency}}
+                                                            </td>
+                                                            <td colspan="2" class="Bold" *ngIf="item.id==0">
+                                                                {{item.debitAmount | currency}}
+                                                            </td>
+                                                            <td colspan="2"class="Bold" *ngIf="item.id==0" > 
+                                                                {{item.creditAmount | currency}}
+                                                            </td>
+                                                            <td colspan="2" class="Bold c" *ngIf="item.id==0" >
+                                                                {{item.netMovement | currency}}
+                                                            </td>
+                                                            <td colspan="2" class="Bold c" *ngIf="item.id==0" >
+                                                                {{item.endingBalance | currency}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                        <tbody>
+                                                        <tr >
+
+                                                            <td colspan="4" class="Bold">
+                                                                Total for all accounts
+                                                            </td>
+                                                            <td colspan="2" > </td>
+                                                             <td colspan="2" class=" Bold" > {{statement.totalDebitAmount | currency}} </td>
+                                                            <td colspan="2"  class=" Bold" >{{statement.totalCreditAmount | currency}} </td>
+                                                            <td colspan="2" class="c"></td>
+                                                            <td colspan="2" class="c"></td>
+                                                        </tr>
+
+                                                        <!-- yeh mujhe last mein add karna hai -->
+                                                    </tbody>
+                                           </table>
+
+                                           </div>
+                                     </div>
+                                    </div>
+    
+    
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </div>
+    </form>
+    
+    
+    

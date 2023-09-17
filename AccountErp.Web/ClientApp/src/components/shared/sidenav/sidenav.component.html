@@ -1,0 +1,391 @@
+<button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+<div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+    <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+        <div class="kt-aside__brand-logo">
+            <a [routerLink]="['/']">
+                <h1 class="text-white logo-big">iClose ERP</h1>
+                <h1 class="text-white logo-sm">i</h1>
+            </a>
+        </div>
+        <div class="kt-aside__brand-tools">
+            <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
+                <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                            <path
+                                d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                                id="Path-94" fill="#000000" fill-rule="nonzero"
+                                transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                            <path
+                                d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                                id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3"
+                                transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                        </g>
+                    </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                            <path
+                                d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+                                id="Path-94" fill="#000000" fill-rule="nonzero" />
+                            <path
+                                d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+                                id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3"
+                                transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                        </g>
+                    </svg></span>
+            </button>
+        </div>
+    </div>
+    <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+        <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1"
+            data-ktmenu-dropdown-timeout="500">
+
+
+            <ul class="kt-nav kt-nav--active-bg" id="m_nav" role="tablist">
+
+                <li class="kt-nav__item" [ngClass]="{ 'kt-menu__item--active' : currentUrl === '/'}"
+                    aria-haspopup="true">
+                    <a [routerLink]="['/']" class="kt-nav__link ">
+                        <i class="kt-nav__link-icon la la-dashboard text-color-white"></i>
+                        <span class="kt-menu__link-text text-color-white">Dashboard</span>
+                    </a>
+                </li>
+                <!-- sales section -->
+                <li class="kt-nav__item kt-nav__item--sub">
+                    <a class="kt-nav__link collapsed" role="tab" id="m_nav_link_1" data-toggle="collapse"
+                        href="#m_nav_sub_1" aria-expanded="  false">
+                      
+                        <i class="kt-nav__link-icon la la-credit-card text-color-white"></i>
+                        <span class="kt-nav__link-text kt-menu__link-icon text-color-white">Sales</span>
+                        <span class="kt-nav__link-arrow text-color-white"></span>
+                    </a>
+                    <ul class="kt-nav__sub collapse" id="m_nav_sub_1" role="tabpanel" aria-labelledby="m_nav_link_1"
+                        data-parent="#m_nav">
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/sales-tax') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/sales-tax/manage']" class="kt-nav__link">
+                                <i class="kt-nav__link-icon la la-calculator text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Sales Taxes</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/item') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/item/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-tag text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Items & Services</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/customer') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/customer/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-users text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Customers</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/Quotation') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/Quotation/quotation-manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-file text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Quotation</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : (currentUrl.indexOf('/invoice') !== -1 && currentUrl.indexOf('/invoice/payments') === -1) }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/invoice/manage']" class="kt-nav__link">
+                                <i class="kt-nav__link-icon la la-sticky-note-o text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/invoice/payments') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/customer/add-customer-payment']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-credit-card text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Add Incomes</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/customerStatement') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['recurring-invoice/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-clock-o text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Recurring Invoices</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/customerStatement') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/customerStatement']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-users text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Customers Statement</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- purchase section -->
+                <li class="kt-nav__item kt-nav__item--sub">
+                    <a class="kt-nav__link collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse"
+                        href="#m_nav_sub_2" aria-expanded="  false">
+                       
+                        <i class="kt-nav__link-icon la la-shopping-cart text-color-white"></i>
+                        <span class="kt-nav__link-text kt-menu__link-icon text-color-white">Purchase</span>
+                        <span class="kt-nav__link-arrow text-color-white"></span>
+                    </a>
+                    <ul class="kt-nav__sub collapse" id="m_nav_sub_2" role="tabpanel" aria-labelledby="m_nav_link_2"
+                        data-parent="#m_nav">
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/vendor') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/vendor/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-users text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Vendors</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : (currentUrl.indexOf('/bill') !== -1 && currentUrl.indexOf('/bill/payments') === -1 )}"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/bill/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-sticky-note-o text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Bills & Expenses</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bill/payments') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/vendor/add-vendor-payment']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-credit-card text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Add Expenses</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/credit-card') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/credit-card/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-credit-card text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Credit Cards</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <!-- Accounts section -->
+                <li class="kt-nav__item kt-nav__item--sub">
+                    <a class="kt-nav__link collapsed" role="tab" id="m_nav_link_3" data-toggle="collapse"
+                        href="#m_nav_sub_3" aria-expanded="  false">
+                       
+                        <i class="kt-nav__link-icon la la-balance-scale text-color-white"></i>
+                        <span class="kt-nav__link-text kt-menu__link-icon text-color-white">Accounts</span>
+                        <span class="kt-nav__link-arrow text-color-white"></span>
+                    </a>
+                    <ul class="kt-nav__sub collapse" id="m_nav_sub_3" role="tabpanel" aria-labelledby="m_nav_link_3"
+                        data-parent="#m_nav">
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/bank-account/manage']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Accounts</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/transaction') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/transaction/transaction']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Transaction</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                        [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                        aria-haspopup="true">
+                        <a [routerLink]="['/chart-of-account/chart-of-account']" class="kt-nav__link ">
+                            <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                            <span class="kt-menu__link-text text-color-white">Chart of Accounts</span>
+                        </a>
+                    </li>
+
+
+
+
+                    </ul>
+                </li>
+
+                <li class="kt-nav__item"
+                    [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/calendar') !== -1 }"
+                    aria-haspopup="true">
+                    <a [routerLink]="['/calendar']" class="kt-nav__link ">
+                        <i class="kt-nav__link-icon la la-calendar-o text-color-white"></i>
+                        <span class="kt-menu__link-text text-color-white">Calendar</span>
+                    </a>
+                </li>
+
+                <!-- Reposts start -->
+                <li class="kt-nav__item" [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/setting') !== -1 }"
+                aria-haspopup="true">
+                <a [routerLink]="['/reports/report-menu']" class="kt-nav__link ">
+                    <i class="kt-nav__link-icon flaticon2-graph text-color-white"></i>
+                    <span class="kt-menu__link-text text-color-white">Reports</span>
+                </a>
+            </li>
+                <!-- <li class="kt-nav__item kt-nav__item--sub">
+                    <a class="kt-nav__link collapsed" role="tab" id="m_nav_link_4" data-toggle="collapse"
+                        href="#m_nav_sub_4" aria-expanded="  false">
+                        <i class="kt-nav__link-icon flaticon2-graph text-color-white"></i>
+                        <span class="kt-nav__link-text kt-menu__link-icon text-color-white">Reports</span>
+                        <span class="kt-nav__link-arrow text-color-white"></span>
+                    </a>
+                    <ul class="kt-nav__sub collapse" id="m_nav_sub_4" role="tabpanel" aria-labelledby="m_nav_link_4"
+                        data-parent="#m_nav">
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/reports/profit-and-loss']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Profit & Loss (Income
+                                    Statement)</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/reports/balance-sheet']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Balance Sheet</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/reports/cash-flow']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Cash Flow</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/reports/sales-tax']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Sales tax</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/income-by-customer']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Income by Customer</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/aged-receivables']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Aged Receivables</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/purchases-by-vendors']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Purchases by Vendor</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/aged-payables']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Aged Payables</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/account-balances']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Account Balances</span>
+                            </a>
+                        </li>
+
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['/reports/trial-balances']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Trial Balances</span>
+                            </a>
+                        </li>
+                        <li class="kt-nav__item"
+                            [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/bank-account') !== -1 }"
+                            aria-haspopup="true">
+                            <a [routerLink]="['reports/account-transactions']" class="kt-nav__link ">
+                                <i class="kt-nav__link-icon la la-bank text-color-white"></i>
+                                <span class="kt-menu__link-text text-color-white">Account Transactions (General
+                                    Ledger)</span>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </li> -->
+                <!-- Reports ends -->
+
+                <li class="kt-nav__item" [ngClass]="{ 'kt-menu__item--active' : currentUrl.indexOf('/setting') !== -1 }"
+                    aria-haspopup="true">
+                    <a [routerLink]="['/setting']" class="kt-nav__link ">
+                        <i class="kt-nav__link-icon la la-key text-color-white"></i>
+                        <span class="kt-menu__link-text text-color-white">Settings</span>
+                    </a>
+                </li>
+
+                <li class="kt-nav__item" aria-haspopup="true">
+                    <a [routerLink]="['/account/logout']" class="kt-nav__link ">
+                        <i class="kt-nav__link-icon la la-sign-out text-color-white"></i>
+                        <span class="kt-menu__link-text text-color-white">Sign Out</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="kt-section__content kt-section__content--x-fit kt-section__content--border">
+
+        </div>
+    </div>
+</div>

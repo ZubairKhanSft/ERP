@@ -1,0 +1,72 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+  <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-subheader__main">
+      <div class="kt-subheader__breadcrumbs">
+        <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+          <em class="flaticon2-shelter"></em>
+        </a>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <a [routerLink]="['/customer/manage']" class="kt-subheader__breadcrumbs-link">
+          Customers </a>
+        <span class="kt-subheader__breadcrumbs-separator"></span>
+        <span>Edit</span>
+      </div>
+    </div>
+    <div class="kt-subheader__toolbar">
+      <div class="kt-subheader__wrapper">
+      </div>
+    </div>
+  </div>
+  <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="kt-portlet">
+          <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">
+                Edit Customer
+              </h3>
+            </div>
+          </div>
+          <div class="kt-portlet__body kt-portlet__body--fit">
+            <div class="kt-grid  kt-wizard-v2 kt-wizard-v2--white">
+              <app-customer-form-wizard-aside [wizardStep]="wizardStep" (setWizardStep)="setWizardStep($event)">
+              </app-customer-form-wizard-aside>
+              <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper" *blockUI="'container-blockui'">
+                <div class="kt-form p-t-10" id="kt_form">
+                  <!-- <app-customer-personal-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 1">
+                  </app-customer-personal-detail>
+                  <app-customer-address-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 2">
+                  </app-customer-address-detail>
+                  <app-customer-payment-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 3">
+                  </app-customer-payment-detail>
+                  <app-customer-discount-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 4">
+                  </app-customer-discount-detail> -->
+
+                  <app-customer-personal-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 1">
+                  </app-customer-personal-detail>
+                  <app-customer-address-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 2">
+                  </app-customer-address-detail>
+                  <app-customer-shippingaddress [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                  *ngIf="wizardStep === 3">
+                </app-customer-shippingaddress>
+                  <app-customer-payment-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 4">
+                  </app-customer-payment-detail>
+                  <app-customer-discount-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 5">
+                  </app-customer-discount-detail>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

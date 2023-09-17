@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccountErp.Dtos\AccountErp.Dtos.csproj" />
+    <ProjectReference Include="..\AccountErp.Entities\AccountErp.Entities.csproj" />
+    <ProjectReference Include="..\AccountErp.Models\AccountErp.Models.csproj" />
+  </ItemGroup>
+
+</Project>

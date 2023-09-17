@@ -1,0 +1,75 @@
+<div class="kt-grid__item kt-wizard-v2__aside p-t-15  col-md-12">
+    <div class="kt-wizard-v2__nav">
+        <div class="kt-wizard-v2__nav-items">
+            <a class="kt-wizard-v2__nav-item " href="javascript:;" [ngClass]="{'active': wizardStep === 1}"
+                (click)="setWizardStep.emit(1)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="la la-file"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Invoice
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            Invoice Details
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 2}"
+                (click)="setWizardStep.emit(2)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="la la-clock-o"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Set schedule
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                          set recurring schedule
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 3}"
+            (click)="setWizardStep.emit(3)">
+            <div class="kt-wizard-v2__nav-body">
+                <div class="kt-wizard-v2__nav-icon">
+                    <i class="la la-credit-card"></i>
+                </div>
+                <div class="kt-wizard-v2__nav-label">
+                    <div class="kt-wizard-v2__nav-label-title">
+                      Get paid
+                    </div>
+                    <div class="kt-wizard-v2__nav-label-desc">
+                       invoice payment
+                    </div>
+                </div>
+            </div>
+        </a>
+
+            <a class="kt-wizard-v2__nav-item" href="javascript:;" [ngClass]="{'active': wizardStep === 4}"
+                (click)="setWizardStep.emit(4)">
+                <div class="kt-wizard-v2__nav-body">
+                    <div class="kt-wizard-v2__nav-icon">
+                        <i class="la la-paper-plane"></i>
+                    </div>
+                    <div class="kt-wizard-v2__nav-label">
+                        <div class="kt-wizard-v2__nav-label-title">
+                            Send
+                        </div>
+                        <div class="kt-wizard-v2__nav-label-desc">
+                            send invoice to customer
+                        </div>
+                    </div>
+                </div>
+            </a>
+            
+           
+        </div>
+    </div>
+</div>

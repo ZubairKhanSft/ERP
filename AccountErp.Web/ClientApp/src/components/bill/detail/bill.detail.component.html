@@ -1,0 +1,246 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <div class="kt-subheader__breadcrumbs">
+                <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                    <em class="flaticon2-shelter"></em>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a [routerLink]="['/bill/manage']" class="kt-subheader__breadcrumbs-link">
+                    Bills & Expenses </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <span>Detail</span>
+            </div>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+            <div class="col-md-12" *blockUI="'container-blockui'">
+                <div class="kt-portlet">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                Bill Detail
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__item" *ngIf="model.status === 0">
+                                        <a [routerLink]="['/bill/payment', model.id]" class="kt-nav__link">
+                                            <em class="kt-nav__link-icon la la-credit-card"></em>
+                                            <span class="kt-nav__link-text"> Pay Bill</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="javascript:;" class="kt-nav__link" (click)="print()">
+                                            <em class="kt-nav__link-icon la la-print"></em>
+                                            <span class="kt-nav__link-text"> Print Bill</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item" *ngIf="model.status === 0">
+                                        <a [routerLink]="['/bill/edit', model.id]" class="kt-nav__link">
+                                            <em class="kt-nav__link-icon la la-edit"></em>
+                                            <span class="kt-nav__link-text"> Edit</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="javascript:;" class="kt-nav__link" (click)="delete()">
+                                            <em class="kt-nav__link-icon la la-trash"></em>
+                                            <span class="kt-nav__link-text">
+                                                Delete
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-form form-horizontal">
+                        <div class="kt-portlet__body" *ngIf="isModelLoaded">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Bill#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3  kt-portlet__label">Bill Date:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.billDate | date }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3  kt-portlet__label">Due Date:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.dueDate | date}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Vendor:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3  kt-portlet__label">Reference#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.id}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Phone:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.phone | mask: '000-000-0000'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Email:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.email}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">PO/SO#:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.poSoNumber}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Notes:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.notes}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Items/Services</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 disableDiv">
+                                    <app-item-selected [selectedItems]="selectedItems" [itemId]="itemId" [selectedTax]="selectedTax" (updateTotalAmount)="updateTotalAmount()">
+                                    </app-item-selected>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Summary</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 kt-portlet__label">Description:</label>
+                                        <div class="col-md-9">
+                                            <p class="kt-portlet__data">{{model.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <table class="table" id="my-table">
+                                      <tbody>
+                                        <tr><td>Sub Total:</td><td class="Bold"><p class="kt-portlet__data">{{model.subTotal | currency}} </p></td></tr>
+                                        <tr><td>Total Discount:</td><td class="Bold"><p class="kt-portlet__data">{{model.discount | currency}} </p></td></tr>
+                                        <tr><td>Tax:</td><td class="Bold"><p class="kt-portlet__data">{{model.tax | currency}} </p></td></tr>
+                                        <tr class="Bold totaoblock"><td>Total Amount:</td><td><p class="kt-portlet__data">{{model.totalAmount | currency}} </p></td></tr>
+                                      </tbody>
+                                    </table>
+                                    <!-- <div class="form-group row">
+                                      <label class="col-md-8 kt-portlet__label">Tax:</label>
+                                      <div class="col-md-4">
+                                        <p class="kt-portlet__data">{{model.tax | currency}} </p>
+                                      </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                      <label class="col-md-8 kt-portlet__label">Total Discount:</label>
+                                      <div class="col-md-4">
+                                        <p class="kt-portlet__data">{{model.discount | currency}} </p>
+                                      </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                      <label class="col-md-8 kt-portlet__label">Total Amount:</label>
+                                      <div class="col-md-4">
+                                        <p class="kt-portlet__data">{{model.totalAmount | currency}} </p>
+                                      </div>
+                                    </div> -->
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="kt-font-bolder">Attachments</span>
+                                    <div class="kt-separator m-t-5">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group" *ngFor="let item of model.attachments; index as $index">
+                                        <a [href]="item.fileUrl" target="_blank">
+                                            <span class="m-r-5">{{($index + 1)}}.</span>
+                                            {{item.title}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="model.attachments.length === 0">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <p>No attachment found</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions text-right" *ngIf="isModelLoaded">
+                                <a [routerLink]="['/bill/manage']" class="btn btn-outline-secondary">
+                                    <i class="la la-arrow-left"></i> Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

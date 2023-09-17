@@ -1,0 +1,129 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-subheader__main">
+            <div class="kt-subheader__breadcrumbs">
+                <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                    <em class="flaticon2-shelter"></em>
+                </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <a [routerLink]="['/bank-account/manage']" class="kt-subheader__breadcrumbs-link">
+                    Accounts </a>
+                <span class="kt-subheader__breadcrumbs-separator"></span>
+                <span>Add</span>
+            </div>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+            <div class="col-md-12" *blockUI="'container-blockui'">
+                <div class="kt-portlet">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                Add User
+                            </h3>
+                        </div>
+                    </div>
+                    <form class="kt-form form-horizontal" name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm"
+                        novalidate>
+                        <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{ 'validation-error' : f.submitted && firstName.invalid}">
+                                        <label class="col-md-3">First Name:*</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="firstName" class="form-control" maxlength="250"
+                                                autocomplete="off" [(ngModel)]="model.firstName" #firstName="ngModel"
+                                                required />
+                                            <div class="validation-error-message"
+                                                *ngIf="f.submitted && firstName.invalid">
+                                                First name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{ 'validation-error' : f.submitted && lastName.invalid}">
+                                        <label class="col-md-3">Last Name:*</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="lastName" class="form-control" maxlength="250"
+                                                autocomplete="off" [(ngModel)]="model.lastName" #lastName="ngModel"
+                                                required />
+
+                                            <div class="validation-error-message"
+                                                *ngIf="f.submitted && lastName.invalid">
+                                                Last name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{ 'validation-error' : f.submitted && email.invalid}">
+                                        <label class="col-md-3">Email or Username:*</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="email" class="form-control" maxlength="250"
+                                                autocomplete="off" [(ngModel)]="model.email" #email="ngModel"
+                                                required />
+                                            <div class="validation-error-message" *ngIf="f.submitted && email.invalid">
+                                                Email name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{ 'validation-error' : f.submitted && password.invalid}">
+                                        <label class="col-md-3">Password:*</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="password" class="form-control" maxlength="250"
+                                                autocomplete="off" [(ngModel)]="model.password" #password="ngModel"
+                                                required />
+                                            <div class="validation-error-message"
+                                                *ngIf="f.submitted && password.invalid">
+                                                Password is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group row"
+                                        [ngClass]="{ 'validation-error' : f.submitted && roleId.invalid}">
+                                        <label class="col-md-3">Role *</label>
+                                        <div class="col-md-9">
+                                            <select name="roleId" class="form-control" [(ngModel)]="model.roleId" #roleId="ngModel" required>
+                                                <option value="" selected>[Select]</option>
+                                                <option *ngFor="let item of roles" [value]="item.keyString">
+                                                        {{item.value}}
+                                                </option>
+                                            </select>
+                                            <div class="validation-error-message" *ngIf="f.submitted && !roleId.valid">
+                                                Role is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions text-right">
+                                <a [routerLink]="['/bank-account/manage']" class="btn btn-secondary m-r-5">Cancel</a>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

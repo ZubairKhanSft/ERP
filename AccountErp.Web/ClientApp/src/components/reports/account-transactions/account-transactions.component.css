@@ -1,0 +1,18 @@
+.lblOverdue{
+    color: rgb(161, 153, 153);
+    font-weight: bold;
+}
+
+.Bold { font-weight: bold; }
+
+.c {
+    text-align: right;
+  } 
+
+  .accHeading{
+      background-color: #e0e7eb;
+
+  }
+  .accSubHeading{
+      background-color: #ecf0f3;
+  }

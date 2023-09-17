@@ -1,0 +1,313 @@
+
+<form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-subheader__main">
+                <div class="kt-subheader__breadcrumbs" >
+                    <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+                        <em class="flaticon2-shelter"></em>
+                    </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <a [routerLink]="['/invoice/manage']" class="kt-subheader__breadcrumbs-link">
+                        Reports </a>
+                    <span class="kt-subheader__breadcrumbs-separator"></span>
+                    <span>Aged Payables</span>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar" id="htmlData" #htmlData>
+                <div class="kt-subheader__wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Aged Payables Report
+                                </h3>
+                            </div>
+    
+                            <div class="btn-group kt-portlet__head-label">
+                                <!-- <button type="button" class="btn btn-success btn-elevate btn-icon-sm dropdown-toggle" data-toggle="dropdown" 
+                                     aria-haspopup="true" aria-expanded="false">
+                                  More Actions
+                                </button> -->
+                                <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle"
+                                data-toggle="dropdown">
+                                Action
+                            </button>
+                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+    
+                                  <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                      <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                          <em class="kt-nav__link-icon la la-print"></em>
+                                          <span class="kt-nav__link-text"> Get share link</span>
+                                      </a>
+                                  </li>
+                                    <li class="kt-nav__item">
+                                      <a href="javascript:;" class="kt-nav__link" (click)="openPDF()">
+                                          <em class="kt-nav__link-icon la la-print"></em>
+                                          <span class="kt-nav__link-text"> Preview as customer</span>
+                                      </a>
+                                  </li>
+                                  <li class="kt-nav__item">
+                                    <a href="javascript:;" class="kt-nav__link" (click)="downloadPDF()">
+                                        <em class="kt-nav__link-icon la la-print"></em>
+                                        <span class="kt-nav__link-text"> Print</span>
+                                    </a>
+                                </li>
+                                  </ul>
+    
+                                </div>
+                              </div>
+                        </div>
+    
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                                 <div class="form-group col-md-2 row" >
+                                                      <label class="col-md-9">Vendor :</label>
+                                                      <div class="col-md-12" >
+                                                         <ngx-select-dropdown  name="vendorId" #vendorId="ngModel" (change)="getVendorDetail()" 
+                                                         [multiple]="false" [(ngModel)]="selectedVendor"
+                                                          [config]="config" [options]="vendors"></ngx-select-dropdown>
+                                                      </div>
+                                                </div>
+                                                
+                                                <div class="form-group col-md-2 row">
+                                                    <label class="col-md-5"> </label>
+                                                    <label class="col-md-3"> </label>
+                                                    <label class="col-md-5"> </label>
+                                                    <div class="col-md-10">
+                                                        <label class="col-md-9">As of :</label>
+                                                    </div>
+                                                </div>
+                                         <!-- <div class="form-group col-md-2 row">
+                                            <label class="col-md-3">from:</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="invoiceStartDate" id="invoiceStartDate"
+                                                        #invoiceStartDate="ngModel" [(ngModel)]="startDate"
+                                                        ngbDatepicker #d="ngbDatepicker" (dateSelect)="changeStartDate()"  readonly />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary calendar"
+                                                            (click)="d.toggle()" type="button">
+                                                            <i class="la la-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="form-group col-md-2 row">
+                                            <label class="col-md-3">to:</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="invoiceDueDate" id="invoiceDueDate"
+                                                        #invoiceDueDate="ngModel" (dateSelect)="changeEnddate()"
+                                                        [(ngModel)]="endDate" ngbDatepicker
+                                                        #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary calendar"
+                                                            (click)="d1.toggle()" type="button">
+                                                            <i class="la la-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                
+                                        <div class="form-group col-md-2 row">
+                                            <label class="col-md-3"></label>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="agedPayableasOfDate" id="agedPayableasOfDate"
+                                                        #agedPayableasOfDate="ngModel" (dateSelect)="changeAsOfdate()"
+                                                        [(ngModel)]="asOfDate" ngbDatepicker
+                                                        #d1="ngbDatepicker" [autoClose]=" true" readonly />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary calendar"
+                                                            (click)="d1.toggle()" type="button">
+                                                            <i class="la la-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-2 row">
+                                            <label class="col-md-9"> </label>
+                                            <label class="col-md-9"> </label>
+                                            <label class="col-md-9"> </label>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-success" (click)="showAgedPayablesReport()">
+                                                    <i class="la la-save"></i> View Report</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12" *blockUI="'container-blockui'">
+                                        <table datatable [dtOptions]="dtOptions" data-page="2" class="table table-striped">
+                                        </table>
+                                    </div> -->
+                                </div>
+    
+    
+                            </div>
+                            <!-- <div class="kt-portlet__foot">
+                                <div class="kt-form__actions text-right">
+                                    <a [routerLink]="['/Quotation/quotation-manage']"
+                                        class="btn btn-outline-secondary m-r-5">
+                                        <i class="la la-arrow-left"></i> Back</a>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="la la-save"></i> Update Report</button>
+                                </div>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+            <div class="row">
+                <div class="col-md-12" *blockUI="'container-blockui'">
+                    <div class="kt-portlet">
+                            <div class="kt-portlet__body">
+                                <div class="container">
+                                    <div class="row justify-content-center">  
+                                      <div class="row-12"></div> <br>
+                                          <div class="col-12"> 
+                                                <table class="table table-striped" id="my-table">
+                                                    <thead>
+                                                        <tr >
+                                                            <th></th>
+                                                            <th ></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th colspan="2"  style="width:15%" style="text-align:right" style="font-size:15px">Number of Days Overdue</th>
+                                                            <th></th>
+                                                            <!-- <th style="width:15%">{{fromDate | date}} to {{toDate | date}}</th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- <tr *ngFor="let item of salesTaxData.invoiceList; index as $index;"> -->
+                                                        <tr>
+                                                             <td  >
+                                                                 S.NO.
+                                                            </td>
+                                                            <td>
+                                                                Vendor Name
+                                                            </td>
+                                                            <td >
+                                                                Not Yet Overdue
+                                                            </td >
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                30 or Less
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                31 to 60
+                                                            </td>
+                                                            <td style="background-color:rgb(187, 220, 241)" >
+                                                                61 to 90
+                                                            </td>
+                                                            <td style="background-color:rgb(187, 220, 241)" >
+                                                                91 or More
+                                                            </td>
+                                                            <td >
+                                                                Total Unpaid
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngFor="let item of agedPayablesData.agedPayablesReportDtoList; index as $index;">
+                                                        <!-- <tr> -->
+                                                            <td scope="row">
+                                                                {{($index + 1)}} 
+                                                            </td>
+                                                            <td scope="row">
+                                                                {{(item.vendorName)}} 
+                                                            </td>
+                                                            <td scope="row">
+                                                                {{(item.notYetOverDue | currency)}} 
+                                                                <div  class="lblOverdue">{{(item.countNotYetOverDue)}} bills  </div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                {{item.lessThan30 | currency}}
+                                                                <div class="lblOverdue">{{item.countLessThan30}} bills</div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                {{item.thirtyFirstToSixty | currency}}
+                                                                <div class="lblOverdue">{{item.countThirtyFirstToSixty}} bills</div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                {{item.sixtyOneToNinety | currency}}
+                                                                <div class="lblOverdue">{{item.countSixtyOneToNinety }} bills</div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)">
+                                                                   {{item.moreThanNinety | currency}}
+                                                                   <div class="lblOverdue"> {{item.countMoreThanNinety}} bills</div>
+                                                            </td>
+                                                            <td scope="row">
+                                                                {{item.totalAmount | currency}}
+                                                                <div  class="lblOverdue">{{item.totalUnpaid | currency}}</div>
+                                                                <div class="lblOverdue">Overdue</div>
+                                                            </td>
+                                                            
+
+                                                        </tr>
+                                                        <tr >
+                                                           <td></td>
+                                                            <td class="Bold">
+                                                                Total Unpaid
+                                                            </td>
+                                                            <td scope="row" class="Bold">
+                                                                {{allNotYetOverdue | currency}}
+                                                                <div  class="lblOverdue">{{allCountNotOverdue}} bills</div>
+                                                            </td>
+                                                            <td scope="row" class="Bold"style="background-color:rgb(187, 220, 241)" > 
+                                                                {{all30OrLess | currency}}
+                                                                <div class="lblOverdue">{{allCountLessThan30}} bill</div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)" class="Bold">
+                                                                {{all31To60 | currency}}
+                                                                <div class="lblOverdue">{{allCount31To60}} bill</div>
+                                                            </td>
+    
+                                                            <td scope="row" class="Bold" style="background-color:rgb(187, 220, 241)">
+                                                                {{all61To90 | currency}}
+                                                                <div class="lblOverdue">{{allCount61To90}} bill</div>
+                                                            </td>
+                                                            <td scope="row" style="background-color:rgb(187, 220, 241)" class="Bold">
+                                                                {{all91OrMore | currency}}
+                                                                <div class="lblOverdue">{{allCount91OrMore}} bill</div>
+                                                            </td>
+                                                            <td scope="row" class="Bold">
+                                                                {{allTotalAmount | currency}}
+                                                                <div  class="lblOverdue">{{allTotalUnpaid | currency}} </div>
+                                                                <div  class="lblOverdue">Overdue</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                 </table>
+                                           </div>
+                                     </div>
+                                    </div>
+    
+    
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+      
+    </div>
+    </form>
+    
+    
+    

@@ -1,0 +1,13 @@
+.text-color-white{
+    color: #FFFFFF!important;
+}
+.kt-menu__link:hover , .kt-menu__item:hover{
+    background-color: #026902!important;
+    color : #FFFFFF!important;
+}
+.kt-aside__brand .kt-aside__brand-tools .kt-aside__brand-aside-toggler svg g [fill]{
+    fill: #FFFFFF!important;
+}
+.kt-aside__brand .kt-aside__brand-tools .kt-aside__brand-aside-toggler svg g :hover{
+    fill: #FFFFFF!important;
+}

@@ -1,0 +1,18 @@
+<app-header-mobile></app-header-mobile>
+<ng-template [ngIf]="layoutType === 0">
+    <router-outlet></router-outlet>
+</ng-template>
+<ng-template [ngIf]="layoutType === 1">
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+            <app-side-nav></app-side-nav>
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+                <app-header></app-header>
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                    <router-outlet></router-outlet>
+                </div>
+                <app-footer></app-footer>
+            </div>
+        </div>
+    </div>
+</ng-template>

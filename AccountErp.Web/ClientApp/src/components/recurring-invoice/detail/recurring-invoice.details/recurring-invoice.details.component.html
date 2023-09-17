@@ -1,0 +1,59 @@
+<div class="kt-holder kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+      <div class="kt-subheader__main">
+        <div class="kt-subheader__breadcrumbs">
+          <a [routerLink]="['/']" class="kt-subheader__breadcrumbs-home">
+            <em class="flaticon2-shelter"></em>
+          </a>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <a [routerLink]="['/customer/manage']" class="kt-subheader__breadcrumbs-link">
+            Recurring Invoice </a>
+          <span class="kt-subheader__breadcrumbs-separator"></span>
+          <span>Detail</span>
+        </div>
+      </div>
+      <div class="kt-subheader__toolbar">
+        <div class="kt-subheader__wrapper">
+        </div>
+      </div>
+    </div>
+    <div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="kt-portlet">
+            <div class="kt-portlet__head">
+              <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                  View Details
+                </h3>
+              </div>
+            </div>
+            <div class="kt-portlet__body kt-portlet__body--fit">
+              <div class="kt-grid  kt-wizard-v2 kt-wizard-v2--white">
+                <app-recinvoice-form-wizard-aside class="col-md-4" [wizardStep]="wizardStep" (setWizardStep)="setWizardStep($event)">
+                </app-recinvoice-form-wizard-aside>
+                <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper col-md-8" *blockUI="'container-blockui'">
+                  <div class="kt-form p-t-10" id="kt_form">
+                    <app-invoice-basic-detail [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                      *ngIf="wizardStep === 1">
+                    </app-invoice-basic-detail>
+                    <app-set-schedule [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                      *ngIf="wizardStep === 2">
+                    </app-set-schedule>
+                    <app-get-recinvoice-payment [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                    *ngIf="wizardStep === 3">
+                  </app-get-recinvoice-payment>
+                    <app-send-recinvoice [model]="model" (moveBackward)="prev()" (moveForward)="next()"
+                      *ngIf="wizardStep === 4">
+                    </app-send-recinvoice>
+                  
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
